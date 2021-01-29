@@ -14,15 +14,15 @@ export default class WelcomeScreen extends React.Component {
             ToastAndroid.show("Passwords Do Not Match", ToastAndroid.SHORT)
         }
         else {
-            await firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {
-                db.collection("notifications").add({
-                    "address": this.state.address,
-                    "contact": this.state.contact,
-                    "firstName": this.state.firstName,
-                    "lastName": this.state.lastName,
-                    "email": this.state.email
+         await firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {
+             db.collection("users").add({
+                 "address": this.state.address,
+                 "contact": this.state.contact,
+                 "firstName": this.state.firstName,
+                 "lastName": this.state.lastName,
+                 "email": this.state.email
                 });
-                return alert("User Added Succesfully", "", [{ text: "Fuck You", onPress: () => this.setState({ isModalVisible: false }) }])
+                return alert("User Added Succesfully", "", [{ text: "OK", onPress: () => this.setState({ isModalVisible: false }) }])
             }).catch(function (error) {
                 var errorCode = error.code;
                 var errorMessage = error.message;
