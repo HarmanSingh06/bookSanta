@@ -1,11 +1,21 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import {createAppContainer} from 'react-navigation';
-import WelcomeScreen from './screens/welcomeScreen'
-import db from './config'
+import { createAppContainer, createSwitchNavigator,} from 'react-navigation';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
+
+import WelcomeScreen from './screens/WelcomeScreen';
+import { AppTabNavigator } from './components/AppTabNavigator';
+import AppDrawerNavigator from './components/AppDrawerNavigator';
 
 export default function App() {
   return (
-      <WelcomeScreen/>
+    <AppContainer/>
   );
 }
+
+
+const switchNavigator = createSwitchNavigator({
+  WelcomeScreen:{screen: WelcomeScreen},
+  Drawer:{screen: AppDrawerNavigator}
+})
+
+const AppContainer =  createAppContainer(switchNavigator);
