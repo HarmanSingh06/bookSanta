@@ -19,13 +19,12 @@ export default class SettingsScreen extends React.Component {
     getUserDetails=()=>{
         var user = firebase.auth().currentUser;
         var email = user.email;
-        db.collection("users").where("email_id","==",email).get().then(()=>{
+        var data = db.collection("users").where("email_id","==",email).get()
+        .then(
             snapshot =>{
                 snapshot.forEach(doc =>{
                     var data = doc.data();
-                    console.log(data)
-
-                    
+                    console.log(data);
                     this.setState({
                         firstName:data.first_name,
                         lastName:data.last_name,
@@ -36,7 +35,7 @@ export default class SettingsScreen extends React.Component {
                     })
                 })  
             }
-        })
+        )
     }
     componentDidMount(){
         this.getUserDetails();
