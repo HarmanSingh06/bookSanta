@@ -9,7 +9,7 @@ export default class MyDonationScreen extends React.Component{
     render(){
         return( 
             <Text>
-                This is My Donation Screen
+                This is My Donation screen
             </Text>
         )
     }
